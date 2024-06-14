@@ -19,8 +19,8 @@ jobs:
       - name: Run tests and lint
         run: |
           docker run --rm -v $(pwd):/app word-analyzer-app:${{ github.sha }} bash -c '
-            pip install -r word_analyzer/requirements.txt &&
-            python word_analyzer/manage.py test &&
+            pip install -r requirements.txt &&
+            python manage.py test &&
             flake8 .'
             
   heroku_git_deploy_job:
