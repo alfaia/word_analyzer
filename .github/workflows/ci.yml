@@ -13,15 +13,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build Docker image
-        run: docker build -t word-analyzer-app:${{ github.sha }} .
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
 
-      - name: Run tests and lint
+      - name: Install dependencies
         run: |
-          docker run --rm -v ${{ github.workspace }}:/app word-analyzer-app:${{ github.sha }} bash -c '
-            pip install -r requirements.txt &&
-            python manage.py test &&
-            flake8 .'
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Flake8
+        run: |
+          python -m flake8 .
+
+      - name: Run pytest
+        run: |
+          pytest word_analyzer\tests.py
             
   heroku_git_deploy_job:
       needs: lint-test-build
