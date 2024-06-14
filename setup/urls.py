@@ -10,7 +10,7 @@ urlpatterns = [
     path('api/', include('word_analyzer.urls')),
 ]
 
-if settings.DEBUG:
+if not settings.DEBUG:
     urlpatterns += [
         re_path(
             r'^static/(?P<path>.*)$',
