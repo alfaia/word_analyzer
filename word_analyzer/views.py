@@ -5,6 +5,16 @@ from .serializers import VowelCountRequestSerializer, SortRequestSerializer
 from .utils import count_vowels, sort_words
 
 
+class ApiRootView(APIView):
+    def get(self, request):
+        api_urls = {
+            'Vowel Count': request.build_absolute_uri('/api/vowel_count/'),
+            'Sort': request.build_absolute_uri('/api/sort/'),
+            'Documentation': request.build_absolute_uri('/static/index.html')
+        }
+        return Response(api_urls, status=status.HTTP_200_OK)
+
+
 class VowelCountView(APIView):
     def post(self, request):
         serializer = VowelCountRequestSerializer(data=request.data)
