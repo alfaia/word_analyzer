@@ -30,7 +30,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> API word analyzer
+          <a href="#" class="icon icon-home"> API word analyzer
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -55,13 +55,13 @@
               </ul>
               <p class="caption"><span class="caption-text">Descrição do Código</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="code/docs_view/">Views</a>
+                  <li class="toctree-l1"><a class="reference internal" href="code/docs_view/index.html">Views</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="code/docs_utils/">Utils</a>
+                  <li class="toctree-l1"><a class="reference internal" href="code/docs_utils/index.html">Utils</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="code/docs_serializer/">Serializers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="code/docs_serializer/index.html">Serializers</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="code/docs_urls/">Urls</a>
+                  <li class="toctree-l1"><a class="reference internal" href="code/docs_urls/index.html">Urls</a>
                   </li>
               </ul>
       </div>
@@ -90,12 +90,12 @@
                 <h1 id="documentacao-da-api-word-analyzer">Documentação da API word analyzer</h1>
 <h2 id="introducao">Introdução</h2>
 <p>A API <code>word_analyzer</code> oferece duas rotas para operações simples em palavras dentro de um array: contar vogais em cada palavra e ordenar as palavras.</p>
-<p>Certifique-se de que a API <code>word_analyzer</code> está em execução localmente no endereço <code>http://localhost:8007</code> para poder realizar as requisições.</p>
+<p>Certifique-se de que a API <code>word_analyzer</code> está em execução no endereço <code>https://agile-shore-49592-142c0eafee41.herokuapp.com/api/</code> para poder realizar as requisições.</p>
 <h2 id="rota-1-contagem-de-vogais">Rota 1: Contagem de Vogais</h2>
 <p>Esta rota permite contar as vogais em cada palavra de um array.</p>
 <ul>
 <li><strong>Método</strong>: POST</li>
-<li><strong>URL</strong>: <code>http://localhost:8007/api/vowel_count/</code></li>
+<li><strong>URL</strong>: <code>https://agile-shore-49592-142c0eafee41.herokuapp.com/api/vowel_count/</code></li>
 <li><strong>Exemplo de Requisição</strong>:</li>
 </ul>
 <pre><code class="language-json">  {
@@ -116,7 +116,7 @@
 <p>Esta rota permite ordenar as palavras em um array, com a opção de ordenação reversa.</p>
 <ul>
 <li><strong>Método</strong>: POST</li>
-<li><strong>URL</strong>: <code>http://localhost:8007/api/sort/</code></li>
+<li><strong>URL</strong>: <code>https://agile-shore-49592-142c0eafee41.herokuapp.com/api/sort/</code></li>
 <li><strong>Exemplo de Requisição para Ordenação Crescente</strong>:</li>
 </ul>
 <pre><code class="language-json">{
@@ -155,7 +155,7 @@
 <p><strong>Exemplo Completo de Uso das Rotas</strong></p>
 <p>Aqui estão exemplos completos de como usar as duas rotas da API <code>word_analyzer</code>:</p>
 <p><strong>Contagem de Vogais:</strong></p>
-<pre><code class="language-bash">curl -X POST &quot;http://localhost:8007/api/vowel_count/&quot; -H &quot;Content-Type: application/json&quot; -d '{ &quot;words&quot;: [&quot;batman&quot;, &quot;robin&quot;, &quot;coringa&quot;]}'
+<pre><code class="language-bash">curl -X POST &quot;https://agile-shore-49592-142c0eafee41.herokuapp.com/api/vowel_count/&quot; -H &quot;Content-Type: application/json&quot; -d '{ &quot;words&quot;: [&quot;batman&quot;, &quot;robin&quot;, &quot;coringa&quot;]}'
 </code></pre>
 <p><strong>Resposta Esperada:</strong></p>
 <pre><code class="language-json">{
@@ -168,7 +168,7 @@
 <ul>
 <li><strong>Ordenação Crescente:</strong></li>
 </ul>
-<pre><code class="language-bash">curl -X POST &quot;http://localhost:8007/api/sort/&quot; -H &quot;Content-Type: application/json&quot; -d &quot;{\&quot;words\&quot;: [\&quot;batman\&quot;, \&quot;robin\&quot;, \&quot;coringa\&quot;], \&quot;order\&quot;: \&quot;asc\&quot;}&quot;
+<pre><code class="language-bash">curl -X POST &quot;https://agile-shore-49592-142c0eafee41.herokuapp.com/api/sort/&quot; -H &quot;Content-Type: application/json&quot; -d &quot;{\&quot;words\&quot;: [\&quot;batman\&quot;, \&quot;robin\&quot;, \&quot;coringa\&quot;], \&quot;order\&quot;: \&quot;asc\&quot;}&quot;
 </code></pre>
 <p><strong>Resposta Esperada:</strong></p>
 <pre><code class="language-json">[
@@ -180,7 +180,7 @@
 <ul>
 <li><strong>Ordenação Decrescente:</strong></li>
 </ul>
-<pre><code class="language-bash">curl -X POST &quot;http://localhost:8007/api/sort/&quot; -H &quot;Content-Type: application/json&quot; -d &quot;{\&quot;words\&quot;: [\&quot;batman\&quot;, \&quot;robin\&quot;, \&quot;coringa\&quot;], \&quot;order\&quot;: \&quot;desc\&quot;}&quot;
+<pre><code class="language-bash">curl -X POST &quot;https://agile-shore-49592-142c0eafee41.herokuapp.com/api/sort/&quot; -H &quot;Content-Type: application/json&quot; -d &quot;{\&quot;words\&quot;: [\&quot;batman\&quot;, \&quot;robin\&quot;, \&quot;coringa\&quot;], \&quot;order\&quot;: \&quot;desc\&quot;}&quot;
 </code></pre>
 <p><strong>Resposta Esperada:</strong></p>
 <pre><code class="language-json">[
@@ -194,7 +194,7 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="code/docs_view/" class="btn btn-neutral float-right" title="Views">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="code/docs_view/index.html" class="btn btn-neutral float-right" title="Views">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -218,7 +218,7 @@
     
     
     
-      <span><a href="code/docs_view/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="code/docs_view/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -238,5 +238,5 @@
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-06-14 18:05:26.510118+00:00
+Build Date UTC : 2024-06-14 18:57:58.206899+00:00
 -->

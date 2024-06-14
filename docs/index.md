@@ -4,14 +4,14 @@
 
 A API `word_analyzer` oferece duas rotas para operações simples em palavras dentro de um array: contar vogais em cada palavra e ordenar as palavras.
 
-Certifique-se de que a API `word_analyzer` está em execução localmente no endereço `http://localhost:8007` para poder realizar as requisições.
+Certifique-se de que a API `word_analyzer` está em execução no endereço `https://agile-shore-49592-142c0eafee41.herokuapp.com/api/` para poder realizar as requisições.
 
 ## Rota 1: Contagem de Vogais
 
 Esta rota permite contar as vogais em cada palavra de um array.
 
 - **Método**: POST
-- **URL**: `http://localhost:8007/api/vowel_count/`
+- **URL**: `https://agile-shore-49592-142c0eafee41.herokuapp.com/api/vowel_count/`
 - **Exemplo de Requisição**:
 ```json
   {
@@ -36,7 +36,7 @@ Para contar as vogais em cada palavra fornecida no array `words`, envie uma requ
 Esta rota permite ordenar as palavras em um array, com a opção de ordenação reversa.
 
 - **Método**: POST
-- **URL**: `http://localhost:8007/api/sort/`
+- **URL**: `https://agile-shore-49592-142c0eafee41.herokuapp.com/api/sort/`
 - **Exemplo de Requisição para Ordenação Crescente**:
 ```json
 {
@@ -82,7 +82,7 @@ Aqui estão exemplos completos de como usar as duas rotas da API `word_analyzer`
 
 **Contagem de Vogais:**
 ```bash
-curl -X POST "http://localhost:8007/api/vowel_count/" -H "Content-Type: application/json" -d '{ "words": ["batman", "robin", "coringa"]}'
+curl -X POST "https://agile-shore-49592-142c0eafee41.herokuapp.com/api/vowel_count/" -H "Content-Type: application/json" -d '{ "words": ["batman", "robin", "coringa"]}'
 ```
 **Resposta Esperada:**
 ```json
@@ -99,7 +99,7 @@ curl -X POST "http://localhost:8007/api/vowel_count/" -H "Content-Type: applicat
 
 - **Ordenação Crescente:**
 ```bash
-curl -X POST "http://localhost:8007/api/sort/" -H "Content-Type: application/json" -d "{\"words\": [\"batman\", \"robin\", \"coringa\"], \"order\": \"asc\"}"
+curl -X POST "https://agile-shore-49592-142c0eafee41.herokuapp.com/api/sort/" -H "Content-Type: application/json" -d "{\"words\": [\"batman\", \"robin\", \"coringa\"], \"order\": \"asc\"}"
 ```
 
 **Resposta Esperada:**
@@ -113,7 +113,7 @@ curl -X POST "http://localhost:8007/api/sort/" -H "Content-Type: application/jso
 
 - **Ordenação Decrescente:**
 ```bash
-curl -X POST "http://localhost:8007/api/sort/" -H "Content-Type: application/json" -d "{\"words\": [\"batman\", \"robin\", \"coringa\"], \"order\": \"desc\"}"
+curl -X POST "https://agile-shore-49592-142c0eafee41.herokuapp.com/api/sort/" -H "Content-Type: application/json" -d "{\"words\": [\"batman\", \"robin\", \"coringa\"], \"order\": \"desc\"}"
 ```
 
 **Resposta Esperada:**
