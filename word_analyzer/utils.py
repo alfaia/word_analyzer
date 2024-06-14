@@ -1,4 +1,3 @@
-# utils.py
 def count_vowels(words):
     vowel_counts = {
         word: sum(1 for char in word if char in 'aeiouAEIOU') for word in words

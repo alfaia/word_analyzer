@@ -1,0 +1,10 @@
+site_name: API word analyzer
+nav:
+  - Exemplo: index.md
+  - Descrição do Código:
+      - Views: code/docs_view.md
+      - Utils: code/docs_utils.md
+      - Serializers: code/docs_serializer.md
+      - Urls: code/docs_urls.md
+theme:
+  name: readthedocs

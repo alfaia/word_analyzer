@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Views - API word analyzer</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Views";
+        var mkdocs_page_input_path = "code\\docs_view.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> API word analyzer
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Exemplo</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Descrição do Código</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Views</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#view-para-contagem">View para Contagem</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#metodo-post">Método post</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#view-para-ordenar">View para ordenar</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#metodo-post_1">Método post</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docs_utils/">Utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docs_serializer/">Serializers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docs_urls/">Urls</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">API word analyzer</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Descrição do Código</li>
+      <li class="breadcrumb-item active">Views</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="detalhamento-das-views-da-api">Detalhamento das Views da API</h1>
+<p>Neste documento, vamos detalhar as classes de view da API <code>word_analyzer</code> utilizando o framework Django REST Framework.</p>
+<h2 id="view-para-contagem">View para Contagem</h2>
+<p>A classe <code>VowelCountView</code> é responsável por contar as vogais em cada palavra de um array enviado na requisição POST.</p>
+<h3 id="metodo-post">Método <code>post</code></h3>
+<pre><code class="language-python">from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import VowelCountRequestSerializer
+from .utils import count_vowels
+
+class VowelCountView(APIView):
+    def post(self, request):
+        serializer = VowelCountRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            words = serializer.validated_data['words']
+            vowel_counts = count_vowels(words)
+            return Response(vowel_counts, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+</code></pre>
+<p><strong>Descrição</strong></p>
+<ul>
+<li><strong>Classe:</strong>
+ <code>VowelCountView</code> herda de <code>APIView</code>.</li>
+<li><strong>Método <code>post</code>:</strong>
+ Recebe uma requisição POST contendo um array de palavras.<ul>
+<li><strong>Serialização:</strong>
+Utiliza o <code>VowelCountRequestSerializer</code> para validar e desserializar os dados recebidos.</li>
+<li><strong>Contagem de Vogais:</strong>
+Chama a função <code>count_vowels(words)</code> para contar as vogais em cada palavra do array.</li>
+<li><strong>Resposta:</strong>
+Retorna um objeto JSON com as contagens de vogais ou erros de validação, com os respectivos códigos de status HTTP.</li>
+</ul>
+</li>
+</ul>
+<h2 id="view-para-ordenar">View para ordenar</h2>
+<p>A classe <code>SortView</code> é responsável por ordenar as palavras em um array conforme especificado na requisição POST.</p>
+<h3 id="metodo-post_1">Método <code>post</code></h3>
+<pre><code class="language-python">from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import SortRequestSerializer
+from .utils import sort_words
+
+class SortView(APIView):
+    def post(self, request):
+        serializer = SortRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            words = serializer.validated_data['words']
+            order = serializer.validated_data['order']
+            sorted_words = sort_words(words, order)
+            return Response(sorted_words, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+</code></pre>
+<p><strong>Descrição</strong></p>
+<ul>
+<li><strong>Classe:</strong>
+ <code>SortView</code> herda de <code>APIView</code>.</li>
+<li><strong>Método <code>post</code>:</strong>
+ Recebe uma requisição POST contendo um array de palavras e um parâmetro de ordenação (<code>order</code>).<ul>
+<li><strong>Serialização:</strong>
+Utiliza o <code>SortRequestSerializer</code> para validar e desserializar os dados recebidos.</li>
+<li><strong>Ordenação de Palavras:</strong>
+Chama a função <code>sort_words(words, order)</code> para ordenar o array de palavras conforme especificado.</li>
+<li><strong>Resposta:</strong>
+Retorna um objeto JSON com as palavras ordenadas ou erros de validação, com os respectivos códigos de status HTTP.</li>
+</ul>
+</li>
+</ul>
+<p>Este documento detalha as classes <code>VowelCountView</code> e <code>SortView</code> da API <code>word_analyzer</code>, explicando como cada uma processa requisições POST, utiliza serializadores para validar dados e chama funções utilitárias (<code>count_vowels</code> e <code>sort_words</code>) para realizar operações específicas.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Exemplo"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../docs_utils/" class="btn btn-neutral float-right" title="Utils">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../docs_utils/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

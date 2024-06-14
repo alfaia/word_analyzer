@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Utils - API word analyzer</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Utils";
+        var mkdocs_page_input_path = "code\\docs_utils.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> API word analyzer
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Exemplo</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Descrição do Código</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../docs_view/">Views</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Utils</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#funcao-para-contar">Função para Contar</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#funcao-para-ordenar">Função para Ordenar</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docs_serializer/">Serializers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../docs_urls/">Urls</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">API word analyzer</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Descrição do Código</li>
+      <li class="breadcrumb-item active">Utils</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="funcoes-de-manipulacao-de-palavras">Funções de Manipulação de Palavras</h1>
+<p>Essas duas funções (<code>sort_words</code>, <code>count_vowels</code>) da API Word Analyzer manipulam listas de palavras e contabilizam as vogais de cada palavra.</p>
+<h3 id="funcao-para-contar">Função para Contar</h3>
+<p>A função <code>count_vowels</code> conta o número de vogais em cada palavra de uma lista.</p>
+<pre><code class="language-python">def count_vowels(words):
+    vowel_counts = {
+        word: sum(1 for char in word if char in 'aeiouAEIOU') for word in words
+    }
+    return vowel_counts
+</code></pre>
+<p><strong>Descrição</strong></p>
+<p>Essa função cria um dicionário <code>vowel_counts</code> onde as chaves são palavras (<code>word</code>) de uma lista (<code>words</code>), e os valores correspondentes são o número de vogais encontradas em cada palavra.</p>
+<ul>
+<li><strong>Argumentos:</strong>
+Recebe uma lista de palavras na variável <code>words</code>.</li>
+<li><strong>Resposta:</strong>
+Retorna o dicionário <code>vowel_counts</code> com as chaves e os valores.</li>
+</ul>
+<h3 id="funcao-para-ordenar">Função para Ordenar</h3>
+<p>A função <code>sort_words</code> ordena uma lista de palavras em ordem crescente ou decrescente.</p>
+<pre><code class="language-python">def sort_words(words, order):
+    return sorted(words, reverse=(order == 'desc'))
+</code></pre>
+<p><strong>Descrição</strong></p>
+<p>Esta função utiliza a função <code>sorted</code> do Python para ordenar a lista de palavras (<code>words</code>). A ordem da ordenação é determinada pelo argumento order, <code>onde</code> <code>asc</code> indica ordem crescente e <code>desc</code> indica ordem decrescente.</p>
+<ul>
+<li><strong>Argumentos:</strong><ul>
+<li><strong><code>words</code> (list):</strong>
+Lista de palavras a serem ordenadas.</li>
+<li><strong><code>order</code> (str):</strong>
+ Indica a ordem de ordenação, podendo ser <code>asc</code> para crescente ou <code>desc</code> para decrescente.</li>
+</ul>
+</li>
+<li><strong>Resposta:</strong>
+Retorna a lista <code>words</code> ordenada de acordo com a ordem especificada em <code>order</code>.</li>
+</ul>
+<p>Este documento oferece uma descrição concisa e informativa das funções <code>count_vowels</code> e <code>sort_words</code>, facilitando o entendimento de suas funcionalidades e modos de uso.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../docs_view/" class="btn btn-neutral float-left" title="Views"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../docs_serializer/" class="btn btn-neutral float-right" title="Serializers">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../docs_view/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../docs_serializer/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
