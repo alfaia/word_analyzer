@@ -6,7 +6,25 @@ on:
     branches: 
       - main
 jobs:
-  heroku_git_deploy_job:
+  lint-test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t word-analyzer-app:${{ github.sha }} .
+
+      - name: Run tests and lint
+        run: |
+          docker run --rm -v $(pwd):/app word-analyzer-app:${{ github.sha }} bash -c '
+            pip install -r word_analyzer/requirements.txt &&
+            python word_analyzer/manage.py test &&
+            flake8 .'
+
+    deploy:
+      needs: lint-test-build
       runs-on: ubuntu-latest
       name: Git Deploy job- A job to deploy django app to heroku using git
       steps:
