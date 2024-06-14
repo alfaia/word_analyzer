@@ -18,7 +18,7 @@ jobs:
 
       - name: Run tests and lint
         run: |
-          docker run --rm -v ${{ github.workspace }}:/app word-analyzer-app:${{ github.sha }} bash -c '
+          docker run --rm -v ${{ github.workspace }}:/app word-analyzer-app:${{ github.sha }} ash -c '
             pip install -r requirements.txt &&
             python manage.py test &&
             flake8 .'
