@@ -24,6 +24,8 @@ COPY . .
 
 # collect static files
 RUN python manage.py collectstatic --noinput
+# Instalação do bash
+RUN apk add --no-cache bash
 
 # add and run as non-root user
 RUN adduser -D myuser
